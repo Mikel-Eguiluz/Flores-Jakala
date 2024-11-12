@@ -7,6 +7,8 @@ import classes from "./Home.module.scss";
 const FLOWER_API_URL = `https://dulces-petalos.jakala.es/api/product`;
 const Home = () => {
   const [flowers, setFlowers] = useState([]);
+  //We declare the query state here to pass down to the search component
+  const [query, setQuery] = useState([]);
   const getFlowers = async () => {
     const response = await fetch(`${FLOWER_API_URL}`);
     const data = await response.json();
@@ -15,14 +17,19 @@ const Home = () => {
   useEffect(() => {
     getFlowers();
   }, []);
+  let filteredFlowers = flowers.filter(
+    (flower) =>
+      flower.name.toLowerCase().includes(query) ||
+      flower.binomialName.toLowerCase().includes(query),
+  );
 
   return (
     <div>
-      <SearchBar />
-      {flowers?.length > 0 ? (
+      <SearchBar setQuery={setQuery} />
+      {filteredFlowers?.length > 0 ? (
         <div className={classes.home}>
-          {flowers.map((flower) => (
-            <FlowerCard flower={flower} />
+          {filteredFlowers.map((flower) => (
+            <FlowerCard flower={flower} key={flower.id} />
           ))}
         </div>
       ) : (

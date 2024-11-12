@@ -23,11 +23,7 @@ $borderRadius: 12px;
 // header height
 $headerHeight: 100px;
 
-@mixin breakpoint($point) {
-  @if $point == md {
-    // 768px
-    @media (min-width: 48em) {
-      @content;
-    }
-  }
-}
+// screen sizes
+$sm: 815px;
+$mid: 1055px;
+$big: 1300px;

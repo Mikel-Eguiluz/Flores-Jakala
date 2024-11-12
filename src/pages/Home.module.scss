@@ -2,9 +2,17 @@
 
 .home {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
-  @include breakpoint(md) {
+
+  @media (min-width: $sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $mid) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (min-width: $big) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
