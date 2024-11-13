@@ -7,8 +7,9 @@ function App () {
   return (
     <Layout>
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/Detail' element={<Detail />} />
+        <Route path='/' element={<Home />} />
+        <Route path={`/:id`} element={<Detail />} />
+        {/* la pagina de error esta definida en Detail debido a la ruta de arriba */}
       </Routes>
     </Layout>
   )

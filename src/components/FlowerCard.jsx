@@ -1,9 +1,14 @@
 import React from "react";
 import classes from "./FlowerCard.module.scss";
+import { Link } from "react-router-dom";
 
 const FlowerCard = ({ flower }) => {
   return (
-    <div className={classes.card} key={flower.id}>
+    <Link
+      to={`/${flower.id}-${flower.name}`}
+      className={classes.card}
+      key={flower.id}
+    >
       <img
         src={flower.imgUrl ? flower.imgUrl : "https://via.placeholder.com/400"}
         alt={flower.binomialName}
@@ -16,7 +21,7 @@ const FlowerCard = ({ flower }) => {
           <b>{flower.price} €</b>
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

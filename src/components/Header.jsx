@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
+import Breadcrumbs from "./Breadcrumbs";
 import classes from "./Header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [size, setSize] = useState({
     width: undefined,
@@ -36,11 +35,6 @@ const Header = () => {
     setMenuOpen((p) => !p);
   };
 
-  const ctaClickHandler = () => {
-    menuToggleHandler();
-    navigate("/");
-  };
-
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
@@ -52,24 +46,7 @@ const Header = () => {
             menuOpen && size.width < 768 ? classes.isMenu : ""
           }`}
         >
-          <ul>
-            <li>
-              <Link to="/page-one" onClick={menuToggleHandler}>
-                PageOne
-              </Link>
-            </li>
-            <li>
-              <Link to="/page-two" onClick={menuToggleHandler}>
-                PageTwo
-              </Link>
-            </li>
-            <li>
-              <Link to="/page-three" onClick={menuToggleHandler}>
-                PageThree
-              </Link>
-            </li>
-          </ul>
-          <button onClick={ctaClickHandler}>CTA Page</button>
+          <Breadcrumbs />
         </nav>
         <div className={classes.header__content__toggle}>
           {!menuOpen ? (
